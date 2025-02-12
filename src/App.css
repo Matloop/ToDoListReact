@@ -1,0 +1,297 @@
+/* App.css */
+
+/* Importação da fonte Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS Reset Básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Variáveis de Cores e Outros Valores */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --radius: 0.75rem;
+}
+
+/* Estilos Globais */
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Container Global */
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Cabeçalho */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    hsl(var(--primary)),
+    hsla(221.2, 83.2%, 53.3%, 0.7)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Estilo Glass (Glassmorphism) */
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius);
+}
+
+/* Animação de entrada (Slide in from top) */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Formulário de Tarefas */
+.task-form {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  animation: slideInFromTop 0.3s ease-out;
+}
+
+/* Estilos para inputs e textareas dentro de .task-form */
+.task-form input,
+.task-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.task-form input:focus,
+.task-form textarea:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 4px hsla(221.2, 83.2%, 53.3%, 0.2);
+}
+
+.task-form textarea {
+  resize: none;
+}
+
+/* Ações do Formulário */
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-actions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.form-actions button[type="submit"] {
+  background-color: hsl(var(--primary));
+  color: #fff;
+  flex: 1;
+}
+
+.form-actions button.cancel-button {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+/* Lista de Tarefas */
+.task-list > * + * {
+  margin-top: 1rem;
+}
+
+/* Item da Tarefa */
+.task-item {
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Conteúdo da Tarefa */
+.task-content h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-content p {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+/* Status da Tarefa */
+.task-status {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-status span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.task-status span.pendente {
+  background-color: #fef9c3;
+  color: #92400e;
+}
+
+.task-status span.concluído {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+/* Ações da Tarefa */
+.task-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task-actions button {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.task-actions .edit-button {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.task-actions .edit-button:hover {
+  background-color: #e5e7eb;
+}
+
+.task-actions .delete-button {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.task-actions .delete-button:hover {
+  background-color: #fecaca;
+}
+
+/* Botão de Alternar (Toggle) */
+.toggle-button {
+  font-size: 0.875rem;
+  background-color: hsla(221.2, 83.2%, 53.3%, 0.1);
+  color: hsl(var(--primary));
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-button:hover {
+  background-color: hsla(221.2, 83.2%, 53.3%, 0.2);
+}
+
+/* Estado Vazio */
+.empty-state {
+  text-align: center;
+  color: #6b7280;
+  padding: 3rem 0;
+}
+
+/* Botão de Adicionar Tarefa */
+.add-button {
+  width: 100%;
+  background-color: hsl(var(--primary));
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.add-button:hover {
+  background-color: hsla(221.2, 83.2%, 53.3%, 0.9);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Estilização para a área de filtros */
+.task-filter {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Estilização para os botões de filtro */
+.task-filter button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e5e7eb; /* Cor de fundo padrão (cinza claro) */
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Efeito hover para os botões */
+.task-filter button:hover {
+  background-color: #d1d5db; /* Cor um pouco mais escura no hover */
+}
+
+/* Botão ativo (filtro selecionado) */
+.task-filter button.active {
+  background-color: hsl(221, 83%, 54%);
+  color: #fff;
+}
