@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+// Componente para formulário de criação/edição de tarefas
 
 function TaskForm({ onTaskAdded, taskToEdit, onTaskUpdated, onCancel }) {
+   // Estados controlados para formulário
   const [title, setTitle] = useState(taskToEdit ? taskToEdit.title : '');
   const [description, setDescription] = useState(taskToEdit ? taskToEdit.description : '');
-
+  //Manipula o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title.trim()) return;
+    //Vai mandar ou a requisição POST ou PUT dependendo da ação
     try {
       if (taskToEdit) {
+        // Atualiza tarefa existente
         await axios.put(`http://localhost:3001/tasks/${taskToEdit.id}`, {
           title,
           description,
@@ -17,6 +21,8 @@ function TaskForm({ onTaskAdded, taskToEdit, onTaskUpdated, onCancel }) {
         });
         onTaskUpdated();
       } else {
+        // Cria nova tarefa
+
         await axios.post('http://localhost:3001/tasks', {
           title,
           description,
@@ -24,6 +30,7 @@ function TaskForm({ onTaskAdded, taskToEdit, onTaskUpdated, onCancel }) {
         });
         onTaskAdded();
       }
+      //Reseta os campos quando dar certo
       setTitle('');
       setDescription('');
     } catch (error) {
@@ -33,6 +40,7 @@ function TaskForm({ onTaskAdded, taskToEdit, onTaskUpdated, onCancel }) {
 
   return (
     <form className="task-form" onSubmit={handleSubmit}>
+      {/* Campo de título */}
       <input
         type="text"
         value={title}
@@ -40,6 +48,7 @@ function TaskForm({ onTaskAdded, taskToEdit, onTaskUpdated, onCancel }) {
         placeholder="Título da tarefa..."
         required
       />
+       {/* Campo de descrição */}
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}

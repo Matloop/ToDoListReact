@@ -1,7 +1,7 @@
 import TaskList from './components/TaskList';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css'; // Importa o CSS global
-
+//Router de bonito até alguma outra página ser implementada
 function App() {
   return (
     <Router>
